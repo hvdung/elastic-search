@@ -23,5 +23,12 @@ class Article < ApplicationRecord
       }
     )
   end
+
+  settings do
+    mappings dynamic: false do
+      indexes :title, type: :text, analyzer: :english
+      indexes :text, type: :text, analyzer: :english
+    end
+  end
 end
 Article.import(force: true)
