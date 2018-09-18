@@ -19,7 +19,16 @@
 
 $(document).on("turbolinks:load", function() {
   $('#search').autocomplete({
-    source: '/articles/autocomplete.json',
-    minLength: 2
+    source: function (request, response) {
+      $.getJSON("/articles.json?q=" + request.term, function (data) {
+        response($.map(data.articles, function (value, key) {
+          return {
+            value: value.title,
+          };
+        }));
+      });
+    },
+    minLength: 2,
+    delay: 100
   });
 });
