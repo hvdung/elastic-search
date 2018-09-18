@@ -1,3 +1,3 @@
 class Article < ApplicationRecord
-  searchkick
+  searchkick word_start: [:title]
 end

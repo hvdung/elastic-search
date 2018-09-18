@@ -3,7 +3,7 @@
 <%= form_for search_path, method: :get do |f| %>
   <p>
     <%= f.label "Search for" %>
-    <%= text_field_tag :q, params[:q] %>
+    <%= text_field_tag :q, params[:q], id: "search" %>
     <%= submit_tag "Go", name: nil %>
   </p>
 <% end %>
