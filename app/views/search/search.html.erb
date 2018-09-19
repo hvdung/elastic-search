@@ -7,18 +7,18 @@
     <%= submit_tag "Go", name: nil %>
   </p>
 <% end %>
+<% if @articles.try(:suggestions) %>
 <div>
 Do you mean
   <% @articles.try(:suggestions).each do |a| %>
     <b><%= a %></b>
   <% end %>
 </div>
+<% end %>
+<% if @articles.try(:with_highlights) %>
 <ul>
-  <% @articles.each do |article| %>
-    <li>
-      <h3>
-        <%= link_to article.title, article_path(article) %>
-      </h3>
-    </li>
+  <% @articles.with_highlights.each do |article, highlights|%>
+  <li><h3><%= link_to raw(highlights[:title]), article_path(article) %></h3></li>
   <% end %>
 </ul>
+<% end %>
