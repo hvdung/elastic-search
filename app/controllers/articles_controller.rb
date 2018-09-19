@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   def index
     @articles = Article.all
+    @articles = @articles.search params[:q] if params[:q].present?
   end
   
   def show
@@ -15,7 +16,7 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to @article
     else
-      render 'new'
+      render :new
     end
   end
 
