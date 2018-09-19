@@ -7,7 +7,12 @@
     <%= submit_tag "Go", name: nil %>
   </p>
 <% end %>
-
+<div>
+Do you mean
+  <% @articles.try(:suggestions).each do |a| %>
+    <b><%= a %></b>
+  <% end %>
+</div>
 <ul>
   <% @articles.each do |article| %>
     <li>
